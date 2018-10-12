@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>App Authorization Service</title>
+</head>
+
+<body>
+	<h1>App Auth Service</h1>
+	<h2 th:text="${#authentication.name}">Current User</h2>
+	
+	<h3>Daftar Permission</h3>
+	<ul>
+		<li th:each="permission : ${#authentication.authorities}">
+			<span th:text="${permission}">NAMA_PERMISSION</span>
+		</li>
+	</ul>
+	
+	<h3>Daftar fitur</h3>
+	<ul>
+		<li sec:authorize="hasAuthority('VIEW_TRANSAKSI')">
+			<a href="@{/transaksi/view}">Lihat Transaksi</a>
+		</li>
+		<li sec:authorize="hasAuthority('EDIT_TRANSAKSI')">
+			<a href="@{/transaksi/edit}">Edit Transaksi</a>
+		</li>
+		<li sec:authorize="hasAuthority('APPROVE_TRANSAKSI')">
+			<a href="@{/transaksi/approve}">Approve Transaksi</a>
+		</li>
+	</ul>
+	
+	<hr />
+	
+	<form method="post" th:action="@{/logout}">
+		<input type="submit" value="Logout">
+	</form>
+</body>
+</html>
