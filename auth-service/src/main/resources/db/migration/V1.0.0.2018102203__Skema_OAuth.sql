@@ -36,3 +36,4 @@ create table oauth_client_token (
   user_name varchar(256) DEFAULT NULL,
   client_id varchar(256) DEFAULT NULL
 ) ;
+
